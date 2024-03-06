@@ -9,7 +9,7 @@ builder.Services.ConfigureHttpJsonOptions(options => {
     options.SerializerOptions.IncludeFields = true;
 });
 builder.Services.AddDbContext<ToDoDbContext>(
-    options=>options.UseMySql("server=localhost;user=root;password=ELI7eli7@;database=tododb",new MySqlServerVersion(new Version(8, 0, 36)))
+    // options=>options.UseMySql("server=localhost;user=root;password=ELI7eli7@;database=tododb",new MySqlServerVersion(new Version(8, 0, 36)))
     );
 builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
