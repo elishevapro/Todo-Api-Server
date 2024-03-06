@@ -11,7 +11,7 @@ builder.Services.ConfigureHttpJsonOptions(options => {
 // builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("Default")!);
 
 builder.Services.AddDbContext<ToDoDbContext>(
-    options=>options.UseMySql(builder.Configuration.GetConnectionString("Default")!,new MySqlServerVersion(new Version(8, 0, 36)))
+    // options=>options.UseMySql(builder.Configuration.GetConnectionString("Default")!,new MySqlServerVersion(new Version(8, 0, 36)))
     );
 builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
