@@ -8,8 +8,10 @@ builder.Services.ConfigureHttpJsonOptions(options => {
     options.SerializerOptions.WriteIndented = true;
     options.SerializerOptions.IncludeFields = true;
 });
+// builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("Default")!);
+
 builder.Services.AddDbContext<ToDoDbContext>(
-    // options=>options.UseMySql("server=localhost;user=root;password=ELI7eli7@;database=tododb",new MySqlServerVersion(new Version(8, 0, 36)))
+    options=>options.UseMySql(builder.Configuration.GetConnectionString("Default")!,new MySqlServerVersion(new Version(8, 0, 36)))
     );
 builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
