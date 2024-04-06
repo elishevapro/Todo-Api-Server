@@ -4,18 +4,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.ConfigureHttpJsonOptions(options => {
     options.SerializerOptions.WriteIndented = true;
     options.SerializerOptions.IncludeFields = true;
 });
-// builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("Default")!);
+builder.Services.AddDbContext<ToDoDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("ToDoDB");
+    options.UseMySql(connectionString, new MySqlServerVersion("8.0.36-mysql"));
+});
 
-builder.Services.AddDbContext<ToDoDbContext>(
-    // options=>options.UseMySql(builder.Configuration.GetConnectionString("Default")!,new MySqlServerVersion(new Version(8, 0, 36)))
-    );
+
 builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
